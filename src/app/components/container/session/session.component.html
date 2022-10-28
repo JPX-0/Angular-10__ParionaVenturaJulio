@@ -1,0 +1,32 @@
+<form [formGroup]="session" class="example-container row g-3 session" (ngSubmit)="login()">
+  <legend>Iniciar sesion</legend>
+  <!-- 
+    Para ingrsar como admin:
+    email: admin.test@gmail.com
+    password: admin.test
+  -->
+  <!-- 
+    Para ingrsar como usuario común:
+    email: (correo que registró el admin)
+    password: user.test
+  -->
+  <mat-form-field appearance="fill" class="col-md-6">
+    <mat-label>Ingresar email</mat-label>
+    <input matInput placeholder="email@example.com" formControlName="email" required>
+    <mat-error *ngIf="when_error('email', null)">
+      {{ when_error("email", "required") && "Es requerido llenar este campo." }}
+      {{ when_error("email", "email") && "Debe ingresar un correo válido" }}
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="col-md-6">
+    <mat-label>Ingresar contraseña</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+    </button>
+    <mat-error *ngIf="when_error('password', null)">
+      {{ when_error("password", "required") && "Es requerido llenar este campo." }}
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!session.valid" class="my-3">Ingresar</button>
+</form>

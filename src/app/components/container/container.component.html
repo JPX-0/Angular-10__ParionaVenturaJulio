@@ -1,0 +1,11 @@
+<app-session 
+  (out_auth)="save_auth($event)" 
+  (out_admin)="save_admin($event)" 
+  *ngIf="!isAuthenticated" 
+></app-session>
+<section *ngIf="isAuthenticated">
+  <button mat-raised-button (click)="logout()" color="warn">
+    <mat-icon class="mat-18">account_circle</mat-icon> cerrar sesión
+  </button>
+  <app-list [in_admin]="isAdmin"></app-list>
+</section>

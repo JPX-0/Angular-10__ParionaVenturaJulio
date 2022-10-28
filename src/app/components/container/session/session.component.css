@@ -1,0 +1,6 @@
+.session {
+  max-width: 400px;
+}
+.session > legend {
+  text-align: center;
+}
